@@ -1,0 +1,17 @@
+# Dados locais
+data/raw/*
+data/processed/*
+!data/raw/README.md
+!data/processed/README.md
+
+# Python e notebooks
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+venv/
+
+# Arquivos locais e credenciais
+.env
+.DS_Store
+Thumbs.db
