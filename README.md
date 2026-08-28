@@ -54,8 +54,8 @@ Os arquivos brutos do conjunto de dados não são versionados neste repositório
 
 ## Equipe
 
-- Igor Eduardo Dallan do Couto
-- Jaqueline de Oliveira Alves
+- Igor Eduardo Dallan do Couto - RA 10748144
+- Jaqueline de Oliveira Alves - RA 10755023
 - Kayo Oliveira Nukui — RA 10356420
 - Lucas de Lima Mendes — RA 10756562
 
