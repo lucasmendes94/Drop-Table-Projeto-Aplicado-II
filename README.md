@@ -10,9 +10,10 @@ O projeto simula uma necessidade da empresa fictícia **ConectaShop**: compreend
 
 ## Acesso rápido
 
-- [Relatório da Etapa 1 revisado](%5BPA2%5D%20Etapa%201%20-%20Drop%20Table%20-%20V270826-R2.docx)
-- [Cronograma completo e editável](Cronograma%20-%20V270826.xlsx)
+- [Relatório da Etapa 1 revisado](%5BPA2%5D%20Etapa%201%20-%20Drop%20Table%20-%20V280826.docx)
+- [Cronograma completo e editável](Cronograma%20-%20V080926.xlsx)
 - [Validação dos comentários do professor](VALIDACAO_COMENTARIOS.md)
+- [Tratamento da base de dados](docs/TRATAMENTO_BASE_DADOS.md)
 
 Este repositório é público. Os links acima podem ser abertos e baixados sem login no GitHub.
 
@@ -44,9 +45,9 @@ Os arquivos brutos do conjunto de dados não são versionados neste repositório
 |-- notebooks/               # EDA, preparação, NLP e modelagem
 |-- reports/
 |   `-- figures/             # gráficos e imagens dos relatórios
-|-- src/                     # funções e pipeline reutilizável
-|-- Cronograma - V270826.xlsx
-|-- [PA2] Etapa 1 - Drop Table - V270826-R2.docx
+|-- src/                     # preparação e treinamento reproduzíveis
+|-- Cronograma - V080926.xlsx
+|-- [PA2] Etapa 1 - Drop Table - V280826.docx
 |-- VALIDACAO_COMENTARIOS.md
 |-- requirements.txt
 `-- README.md
@@ -65,7 +66,7 @@ Os arquivos brutos do conjunto de dados não são versionados neste repositório
 - [x] Seleção e descrição inicial do conjunto de dados
 - [x] Objetivos, metas e cronograma inicial
 - [x] Comentários do professor atendidos no relatório e documentados no repositório
-- [ ] Aquisição, qualidade e preparação dos dados
+- [x] Pipeline de preparação e treinamento da base implementado e validado
 - [ ] Análise exploratória
 - [ ] Modelos de classificação e análise de tópicos
 - [ ] Relatório, storytelling e apresentação final
