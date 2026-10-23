@@ -11,9 +11,12 @@ O projeto simula uma necessidade da empresa fictícia **ConectaShop**: compreend
 ## Acesso rápido
 
 - [Relatório da Etapa 1 revisado](%5BPA2%5D%20Etapa%201%20-%20Drop%20Table%20-%20V280826.docx)
-- [Cronograma completo e editável](Cronograma%20-%20V080926.xlsx)
+- [Cronograma mais recente](Cronograma%20-%20V191026.xlsx)
 - [Validação dos comentários do professor](VALIDACAO_COMENTARIOS.md)
 - [Tratamento da base de dados](docs/TRATAMENTO_BASE_DADOS.md)
+- [Etapa 3 — cinco temas e otimização de C (Lucas)](docs/ETAPA3_TEMAS_E_OTIMIZACAO.md)
+- [Evidências dos experimentos da Etapa 3](reports/etapa3/)
+- [Relatório Etapa 1 em PDF](%5BPA2%5D%20Etapa%201%20-%20Drop%20Table%20-%20V280826.pdf)
 
 Este repositório é público. Os links acima podem ser abertos e baixados sem login no GitHub.
 
@@ -46,7 +49,7 @@ Os arquivos brutos do conjunto de dados não são versionados neste repositório
 |-- reports/
 |   `-- figures/             # gráficos e imagens dos relatórios
 |-- src/                     # preparação e treinamento reproduzíveis
-|-- Cronograma - V080926.xlsx
+|-- Cronograma - V191026.xlsx
 |-- [PA2] Etapa 1 - Drop Table - V280826.docx
 |-- VALIDACAO_COMENTARIOS.md
 |-- requirements.txt
@@ -69,4 +72,8 @@ Os arquivos brutos do conjunto de dados não são versionados neste repositório
 - [x] Pipeline de preparação e treinamento da base implementado e validado
 - [ ] Análise exploratória
 - [ ] Modelos de classificação e análise de tópicos
+- [x] Etapa 3 (Lucas): cinco temas recorrentes, com evidências e limitações
+- [x] Etapa 3 (Lucas): busca de C por validação cruzada; selecionado C = 1
+- [ ] Etapa 3: validação operacional, calibração e limiares
+- [ ] Etapa 3: descrição geral dos resultados, storytelling e revisão/entrega do PDF
 - [ ] Relatório, storytelling e apresentação final

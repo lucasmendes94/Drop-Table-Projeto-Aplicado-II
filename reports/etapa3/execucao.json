@@ -1,0 +1,14 @@
+{
+  "python": "3.12.14",
+  "sklearn": "1.9.1",
+  "numpy": "2.5.4",
+  "pandas": "3.1.0",
+  "seed": 42,
+  "n_treino": 27918,
+  "n_teste": 6980,
+  "pedidos_compartilhados_treino_teste": 19,
+  "sha256": {
+    "treino.csv": "95b5878d846571ba7cd6bd2204b8c6fd1efbf11733fb723cf7be38468db89f2b",
+    "teste.csv": "9f8ff8c1671018ac59795e7a87ec6550b7ffea447031bce3fad973a2e5f59d4e"
+  }
+}

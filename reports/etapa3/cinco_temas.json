@@ -1,0 +1,42 @@
+{
+  "denominador": 8196,
+  "escopo": "negativos do treino",
+  "metodo": "regras lexicais exploratórias multirrótulo; não validado como classificador",
+  "com_algum_tema": 4661,
+  "sem_tema_detectado": 3535,
+  "multiplos_temas": 649,
+  "temas": [
+    {
+      "tema": "Atraso ou não recebimento",
+      "mencoes_detectadas": 2700,
+      "percentual_negativos_treino": 32.94
+    },
+    {
+      "tema": "Defeito, avaria ou baixa qualidade",
+      "mencoes_detectadas": 625,
+      "percentual_negativos_treino": 7.63
+    },
+    {
+      "tema": "Produto diferente do solicitado",
+      "mencoes_detectadas": 592,
+      "percentual_negativos_treino": 7.22
+    },
+    {
+      "tema": "Pedido incompleto ou peças faltantes",
+      "mencoes_detectadas": 520,
+      "percentual_negativos_treino": 6.34
+    },
+    {
+      "tema": "Atendimento, troca ou reembolso",
+      "mencoes_detectadas": 926,
+      "percentual_negativos_treino": 11.3
+    }
+  ],
+  "padroes": {
+    "Atraso ou não recebimento": "\\b(atras\\w*|demor\\w*|nao recebi|nao chegou|nao entreg\\w*|nao foi entregue|ainda aguard\\w*|prazo venc\\w*)\\b",
+    "Defeito, avaria ou baixa qualidade": "\\b(defeit\\w*|quebrad\\w*|danificad\\w*|avariad\\w*|estragad\\w*|rachad\\w*|nao funciona\\w*|pessima qualidade|baixa qualidade|qualidade ruim)\\b",
+    "Produto diferente do solicitado": "\\b(errad\\w*|diferente do|diferente da|veio outro|veio outra|nao corresponde|nao condiz|divergent\\w*)\\b",
+    "Pedido incompleto ou peças faltantes": "\\b(faltando|incomplet\\w*|falta de pecas|faltam pecas|so veio um|so veio uma|so recebi um|so recebi uma|apenas um|apenas uma)\\b",
+    "Atendimento, troca ou reembolso": "\\b(atendimento|nao respond\\w*|sem resposta|sem retorno|nao tive retorno|reembols\\w*|estorn\\w*|devolu\\w*|devolver|troca\\w*)\\b"
+  }
+}
