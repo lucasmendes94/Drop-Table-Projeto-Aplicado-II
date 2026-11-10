@@ -66,3 +66,10 @@ A proposta não é substituir a análise humana, mas reduzir o volume de leitura
 O modelo utiliza notas como aproximação do sentimento e a análise temática é exploratória. Os temas ainda não foram validados por uma amostra independente rotulada manualmente.
 
 Assim, os resultados devem ser apresentados como apoio à decisão e geração de hipóteses, e não como diagnóstico definitivo da operação real da Olist.
+
+
+## Protótipo disponível
+
+O protótipo está disponível em [Painel de Voz do Cliente](../produto/painel_voz_cliente.html).
+
+Ele consolida as principais métricas do classificador e os cinco temas exploratórios de insatisfação em uma visualização simples, servindo como evidência do produto gerado nesta etapa.
