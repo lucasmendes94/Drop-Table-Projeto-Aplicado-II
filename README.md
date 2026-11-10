@@ -17,6 +17,7 @@ O projeto simula uma necessidade da empresa fictícia **ConectaShop**: compreend
 - [Etapa 3 — entrega consolidada](docs/ETAPA3_ENTREGA.md)
 - [Método analítico aplicado](docs/METODO_ANALITICO.md)
 - [Resultados preliminares e produto analítico](docs/RESULTADOS_PRELIMINARES.md)
+- [Protótipo — Painel de Voz do Cliente](produto/painel_voz_cliente.html)
 - [Modelo de negócios](docs/MODELO_NEGOCIO.md)
 - [Esboço do storytelling](docs/STORYTELLING.md)
 - [Etapa 3 — cinco temas e otimização de C (Lucas)](docs/ETAPA3_TEMAS_E_OTIMIZACAO.md)
