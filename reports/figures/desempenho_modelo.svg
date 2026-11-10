@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="602" viewBox="0 0 900 602">
+<style>
+text{font-family:Arial,sans-serif;fill:#222}.title{font-size:24px;font-weight:bold}.label{font-size:16px}.value{font-size:15px;font-weight:bold}
+.bg{fill:#eeeeee}.bar{fill:#555555}.axis{stroke:#bbbbbb;stroke-width:1}
+</style>
+<rect width="100%" height="100%" fill="white"/>
+<text x="30" y="40" class="title">Desempenho do classificador no teste</text><text x="30" y="105" class="label">Acurácia</text>
+<rect x="290" y="85" width="520" height="28" rx="3" class="bg"/>
+<rect x="290" y="85" width="418.1" height="28" rx="3" class="bar"/>
+<text x="718.0799999999999" y="105" class="value">80,40%</text><text x="30" y="177" class="label">F1 negativo</text>
+<rect x="290" y="157" width="520" height="28" rx="3" class="bg"/>
+<rect x="290" y="157" width="419.6" height="28" rx="3" class="bar"/>
+<text x="719.588" y="177" class="value">80,69%</text><text x="30" y="249" class="label">Recall negativo</text>
+<rect x="290" y="229" width="520" height="28" rx="3" class="bg"/>
+<rect x="290" y="229" width="429.9" height="28" rx="3" class="bar"/>
+<text x="729.884" y="249" class="value">82,67%</text><text x="30" y="321" class="label">F1 macro</text>
+<rect x="290" y="301" width="520" height="28" rx="3" class="bg"/>
+<rect x="290" y="301" width="353.9" height="28" rx="3" class="bar"/>
+<text x="653.912" y="321" class="value">68,06%</text><text x="30" y="393" class="label">F1 neutro</text>
+<rect x="290" y="373" width="520" height="28" rx="3" class="bg"/>
+<rect x="290" y="373" width="175.3" height="28" rx="3" class="bar"/>
+<text x="475.34399999999994" y="393" class="value">33,72%</text><text x="30" y="465" class="label">F1 positivo</text>
+<rect x="290" y="445" width="520" height="28" rx="3" class="bg"/>
+<rect x="290" y="445" width="466.9" height="28" rx="3" class="bar"/>
+<text x="766.908" y="465" class="value">89,79%</text></svg>
