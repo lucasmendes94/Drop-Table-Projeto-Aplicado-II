@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="530" viewBox="0 0 900 530">
+<style>
+text{font-family:Arial,sans-serif;fill:#222}.title{font-size:24px;font-weight:bold}.label{font-size:16px}.value{font-size:15px;font-weight:bold}
+.bg{fill:#eeeeee}.bar{fill:#555555}.axis{stroke:#bbbbbb;stroke-width:1}
+</style>
+<rect width="100%" height="100%" fill="white"/>
+<text x="30" y="40" class="title">Temas exploratórios nas avaliações negativas de treino</text><text x="30" y="105" class="label">Atraso / não recebimento</text>
+<rect x="290" y="85" width="520" height="28" rx="3" class="bg"/>
+<rect x="290" y="85" width="489.4" height="28" rx="3" class="bar"/>
+<text x="789.3942857142856" y="105" class="value">32,94%</text><text x="30" y="177" class="label">Atendimento / troca / reembolso</text>
+<rect x="290" y="157" width="520" height="28" rx="3" class="bg"/>
+<rect x="290" y="157" width="167.9" height="28" rx="3" class="bar"/>
+<text x="467.88571428571424" y="177" class="value">11,30%</text><text x="30" y="249" class="label">Defeito / avaria / baixa qualidade</text>
+<rect x="290" y="229" width="520" height="28" rx="3" class="bg"/>
+<rect x="290" y="229" width="113.4" height="28" rx="3" class="bar"/>
+<text x="413.36" y="249" class="value">7,63%</text><text x="30" y="321" class="label">Produto diferente do solicitado</text>
+<rect x="290" y="301" width="520" height="28" rx="3" class="bg"/>
+<rect x="290" y="301" width="107.3" height="28" rx="3" class="bar"/>
+<text x="407.2685714285714" y="321" class="value">7,22%</text><text x="30" y="393" class="label">Pedido incompleto / peças faltantes</text>
+<rect x="290" y="373" width="520" height="28" rx="3" class="bg"/>
+<rect x="290" y="373" width="94.2" height="28" rx="3" class="bar"/>
+<text x="394.1942857142857" y="393" class="value">6,34%</text></svg>
