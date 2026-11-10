@@ -16,6 +16,7 @@ O projeto simula uma necessidade da empresa fictícia **ConectaShop**: compreend
 - [Tratamento da base de dados](docs/TRATAMENTO_BASE_DADOS.md)
 - [Etapa 3 — entrega consolidada](docs/ETAPA3_ENTREGA.md)
 - [Método analítico aplicado](docs/METODO_ANALITICO.md)
+- [Análise exploratória final](docs/EDA_FINAL.md)
 - [Resultados preliminares e produto analítico](docs/RESULTADOS_PRELIMINARES.md)
 - [Protótipo — Painel de Voz do Cliente](produto/painel_voz_cliente.html)
 - [Modelo de negócios](docs/MODELO_NEGOCIO.md)
@@ -88,3 +89,14 @@ Os arquivos brutos do conjunto de dados não são versionados neste repositório
 - [ ] Relatório técnico final
 - [ ] Apresentação final do storytelling
 - [ ] Vídeo de apresentação no YouTube
+
+
+## Execução das análises finais
+
+Depois de preparar os dados localmente, a EDA final e a validação operacional agrupada por pedido podem ser executadas em sequência:
+
+```text
+python -m src.finalizar_analise
+```
+
+O comando gera as figuras em `reports/figures/` e os resultados da validação em `reports/etapa3/validacao_operacional/`. Os CSVs processados permanecem fora do GitHub.
