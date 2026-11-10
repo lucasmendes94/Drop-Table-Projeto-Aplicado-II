@@ -14,6 +14,11 @@ O projeto simula uma necessidade da empresa fictícia **ConectaShop**: compreend
 - [Cronograma mais recente](Cronograma%20-%20V191026.xlsx)
 - [Validação dos comentários do professor](VALIDACAO_COMENTARIOS.md)
 - [Tratamento da base de dados](docs/TRATAMENTO_BASE_DADOS.md)
+- [Etapa 3 — entrega consolidada](docs/ETAPA3_ENTREGA.md)
+- [Método analítico aplicado](docs/METODO_ANALITICO.md)
+- [Resultados preliminares e produto analítico](docs/RESULTADOS_PRELIMINARES.md)
+- [Modelo de negócios](docs/MODELO_NEGOCIO.md)
+- [Esboço do storytelling](docs/STORYTELLING.md)
 - [Etapa 3 — cinco temas e otimização de C (Lucas)](docs/ETAPA3_TEMAS_E_OTIMIZACAO.md)
 - [Evidências dos experimentos da Etapa 3](reports/etapa3/)
 - [Relatório Etapa 1 em PDF](%5BPA2%5D%20Etapa%201%20-%20Drop%20Table%20-%20V280826.pdf)
@@ -70,10 +75,15 @@ Os arquivos brutos do conjunto de dados não são versionados neste repositório
 - [x] Objetivos, metas e cronograma inicial
 - [x] Comentários do professor atendidos no relatório e documentados no repositório
 - [x] Pipeline de preparação e treinamento da base implementado e validado
-- [ ] Análise exploratória
-- [ ] Modelos de classificação e análise de tópicos
+- [x] Preparação e tratamento da base
+- [x] Modelo-base de classificação de sentimentos aplicado
+- [x] Métricas de avaliação calculadas
 - [x] Etapa 3 (Lucas): cinco temas recorrentes, com evidências e limitações
 - [x] Etapa 3 (Lucas): busca de C por validação cruzada; selecionado C = 1
-- [ ] Etapa 3: validação operacional, calibração e limiares
-- [ ] Etapa 3: descrição geral dos resultados, storytelling e revisão/entrega do PDF
-- [ ] Relatório, storytelling e apresentação final
+- [x] Etapa 3: resultados preliminares, produto analítico e rascunho de modelo de negócios
+- [x] Etapa 3: esboço do storytelling
+- [ ] Validação adicional agrupada por pedido (recomendação metodológica)
+- [ ] Consolidação da análise exploratória em gráficos finais
+- [ ] Relatório técnico final
+- [ ] Apresentação final do storytelling
+- [ ] Vídeo de apresentação no YouTube
