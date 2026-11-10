@@ -28,7 +28,7 @@ A base textual tratada contém 34.898 avaliações:
 
 | Sentimento | Quantidade | Percentual |
 |---|---:|---:|
-| Positivo | 21.488 | 61,58% |
+| Positivo | 21.488 | 61,57% |
 | Negativo | 10.245 | 29,36% |
 | Neutro | 3.165 | 9,07% |
 | **Total** | **34.898** | **100%** |
