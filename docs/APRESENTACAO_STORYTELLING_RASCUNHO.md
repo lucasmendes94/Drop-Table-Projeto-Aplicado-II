@@ -16,90 +16,90 @@ Lucas de Lima Mendes
 
 ## Slide 2 — O problema
 
-**Milhares de avaliações, mas quais problemas realmente importam?**
+**Milhares de avaliações, mas quais problemas realmente aparecem nos comentários?**
 
-- notas mostram satisfação geral;
-- comentários explicam o motivo;
-- leitura manual não escala;
-- a ConectaShop precisa transformar texto em informação.
+- notas resumem satisfação;
+- comentários explicam a experiência;
+- leitura manual dificulta consolidar grandes volumes;
+- a ConectaShop precisa transformar texto em informação estruturada.
 
-Mensagem principal:
+Pergunta do projeto:
 
-> Como identificar automaticamente clientes insatisfeitos e entender os principais motivos?
+**Como identificar automaticamente sentimentos e temas recorrentes de insatisfação?**
 
 ---
 
-## Slide 3 — Os dados
+## Slide 3 — Da base bruta à base analisável
 
-**Base pública da Olist**
+**Olist — avaliações de pedidos**
 
-- 99.224 registros originais no arquivo de avaliações;
-- 34.898 avaliações textuais válidas após tratamento;
+- 99.224 registros originais;
+- 34.898 avaliações textuais válidas após o tratamento;
+- 27.918 registros de treino;
+- 6.980 registros de teste.
+
+Classes:
+
 - 61,57% positivas;
 - 29,36% negativas;
 - 9,07% neutras.
 
-Visual sugerido:
-`reports/figures/distribuicao_sentimentos_resumo.svg`
-
 ---
 
-## Slide 4 — Preparação e método
+## Slide 4 — O método aplicado
 
-**Do comentário ao modelo**
+**Pipeline reproduzível**
 
-Fluxo:
+Avaliação → normalização → rótulo → TF-IDF → Regressão Logística
 
-Avaliação → limpeza → rótulo de sentimento → TF-IDF → Regressão Logística
+Rótulos:
 
 - notas 1–2: negativo;
 - nota 3: neutro;
-- notas 4–5: positivo;
-- 27.918 registros de treino;
-- 6.980 registros de teste.
+- notas 4–5: positivo.
+
+O TF-IDF é ajustado somente no conjunto de treino e o classificador usa balanceamento de classes.
 
 ---
 
-## Slide 5 — O modelo funciona?
+## Slide 5 — Resultado do classificador
 
-**Resultado no conjunto de teste**
+**Desempenho no teste**
 
-- acurácia: **80,40%**;
-- F1 negativo: **80,69%**;
-- recall negativo: **82,67%**;
-- F1 positivo: **89,79%**;
-- F1 neutro: **33,72%**.
+- Acurácia: **80,40%**
+- Precisão negativa: **78,79%**
+- Recall negativo: **82,67%**
+- F1 negativo: **80,69%**
+- F1 positivo: **89,79%**
+- F1 neutro: **33,72%**
 
 Mensagem:
 
-> O modelo identifica bem avaliações positivas e negativas, mas ainda encontra dificuldade com avaliações neutras.
-
-Visual:
-`reports/figures/desempenho_modelo.svg`
+**O modelo apresentou bom desempenho nas classes positiva e negativa; a classe neutra foi a principal dificuldade observada.**
 
 ---
 
 ## Slide 6 — Otimização
 
-**Testamos diferentes níveis de regularização**
+**Qual regularização funcionou melhor?**
 
-- 9 valores de C;
-- validação cruzada em 5 folds;
+- 9 valores de C testados;
+- 5 folds de validação cruzada;
+- 45 ajustes executados;
 - critério: F1 da classe negativa;
-- melhor configuração: **C = 1**.
+- melhor resultado: **C = 1**.
 
-Mensagem:
+Conclusão:
 
-> A busca confirmou que o baseline já estava bem ajustado nesse parâmetro.
-
-Visual:
-`reports/figures/otimizacao_c.svg`
+**A otimização confirmou o parâmetro já utilizado no baseline.**
 
 ---
 
-## Slide 7 — Por que os clientes estão insatisfeitos?
+## Slide 7 — O que aparece nas avaliações negativas?
 
-**Temas exploratórios nas avaliações negativas**
+Foram analisadas 8.196 avaliações negativas do treino.
+
+Principais temas exploratórios:
 
 1. atraso ou não recebimento — **32,94%**;
 2. atendimento, troca ou reembolso — **11,30%**;
@@ -109,68 +109,51 @@ Visual:
 
 Mensagem:
 
-> Identificar o sentimento é útil, mas entender o motivo da insatisfação gera mais valor.
-
-Visual:
-`reports/figures/temas_insatisfacao.svg`
+**Classificar o sentimento mostra quem está insatisfeito; analisar os temas ajuda a entender o motivo.**
 
 ---
 
-## Slide 8 — Produto proposto
+## Slide 8 — Produto gerado
 
 **Painel de Voz do Cliente — ConectaShop**
 
-O painel reúne:
+O protótipo consolida:
 
-- sentimento das avaliações;
-- indicadores do classificador;
-- principais temas negativos;
-- informação para priorização de problemas.
+- indicadores do modelo;
+- desempenho da classe negativa;
+- limitação da classe neutra;
+- cinco temas de insatisfação;
+- uma leitura de apoio à priorização.
 
-Usuários:
-Customer Experience, atendimento, operações e qualidade.
-
-Visual:
-captura do `produto/painel_voz_cliente.html`.
+Usuários possíveis:
+Customer Experience, atendimento, qualidade e operações.
 
 ---
 
-## Slide 9 — Impacto e limitações
+## Slide 9 — O que os resultados permitem concluir
 
-**O que o projeto permite fazer**
+- o classificador alcançou 80,40% de acurácia;
+- a meta de F1 negativo acima de 0,80 foi atingida;
+- atraso/não recebimento foi o tema mais frequente entre as cinco regras analisadas;
+- a classe neutra ainda é difícil de identificar;
+- a análise temática é exploratória e não equivale a uma taxa oficial de falha operacional.
 
-- reduzir leitura manual;
-- detectar padrões;
-- priorizar investigações;
-- transformar texto em informação.
-
-**O que ainda precisamos considerar**
-
-- sentimento aproximado pela nota;
-- classe neutra com desempenho inferior;
-- temas exploratórios;
-- validação agrupada por pedido.
-
-> Inserir aqui o resultado final da validação por `order_id` após execução local.
+**Todos os números apresentados possuem código e evidência correspondente no GitHub.**
 
 ---
 
-## Slide 10 — Conclusão
+## Slide 10 — Encerramento
 
-**De comentários dispersos para informação acionável**
+**De comentários dispersos para informação estruturada**
 
-- modelo com 80,40% de acurácia;
-- F1 negativo acima de 80%;
-- descoberta de temas recorrentes;
-- proposta de produto aplicável ao negócio.
+O projeto entregou:
 
-Próximos passos:
-
-- validação humana dos temas;
-- melhoria da classe neutra;
-- integração com dados operacionais;
-- dashboard interativo.
-
-Final:
+- base tratada;
+- método analítico aplicado;
+- métricas de desempenho;
+- otimização reproduzível;
+- análise temática;
+- produto analítico;
+- documentação de reprodução e rastreabilidade.
 
 **GitHub:** lucasmendes94/Drop-Table-Projeto-Aplicado-II
