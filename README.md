@@ -1,105 +1,112 @@
-# Drop Table - Projeto Aplicado II
+# Drop Table — Projeto Aplicado II
 
 Projeto do 3º semestre do curso de Tecnologia em Banco de Dados da Universidade Presbiteriana Mackenzie.
 
-## Tema
+## Projeto
 
-Análise de sentimentos e classificação de avaliações de e-commerce utilizando o conjunto de dados público da Olist.
+**Tema:** análise de sentimentos e de temas de insatisfação em avaliações de e-commerce.
 
-O projeto simula uma necessidade da empresa fictícia **ConectaShop**: compreender padrões de satisfação e insatisfação dos clientes a partir das notas e dos comentários textuais de pedidos.
+O conjunto de dados utilizado é o **Brazilian E-Commerce Public Dataset by Olist**. O projeto simula uma aplicação para a empresa fictícia **ConectaShop**, transformando avaliações textuais em informações estruturadas para apoio à experiência do cliente e às operações.
 
-## Acesso rápido
+## Navegação rápida
 
-- [Relatório da Etapa 1 revisado](%5BPA2%5D%20Etapa%201%20-%20Drop%20Table%20-%20V280826.docx)
-- [Cronograma mais recente](Cronograma%20-%20V191026.xlsx)
-- [Validação dos comentários do professor](VALIDACAO_COMENTARIOS.md)
-- [Tratamento da base de dados](docs/TRATAMENTO_BASE_DADOS.md)
-- [Etapa 3 — entrega consolidada](docs/ETAPA3_ENTREGA.md)
-- [Método analítico aplicado](docs/METODO_ANALITICO.md)
-- [Análise exploratória final](docs/EDA_FINAL.md)
-- [Resultados preliminares e produto analítico](docs/RESULTADOS_PRELIMINARES.md)
+### Entrega e documentação
+
+- [Relatório técnico final — versão de trabalho](docs/RELATORIO_FINAL_RASCUNHO.md)
+- [Storytelling — versão de trabalho](docs/APRESENTACAO_STORYTELLING_RASCUNHO.md)
+- [Rastreabilidade dos resultados](docs/RASTREABILIDADE_RESULTADOS.md)
+- [Como reproduzir os resultados](docs/REPRODUCAO.md)
+- [Tratamento da base](docs/TRATAMENTO_BASE_DADOS.md)
+- [Método analítico](docs/METODO_ANALITICO.md)
+- [Resultados preliminares e produto](docs/RESULTADOS_PRELIMINARES.md)
+- [Análise de temas e otimização](docs/ETAPA3_TEMAS_E_OTIMIZACAO.md)
+
+### Evidências de execução
+
+- [Manifesto da execução](reports/etapa3/execucao.json)
+- [Métricas no teste](reports/etapa3/comparacao_teste.json)
+- [Comparação dos valores de C](reports/etapa3/comparacao_c.csv)
+- [Resultados dos 45 ajustes de validação cruzada](reports/etapa3/validacao_folds.csv)
+- [Tópicos NMF](reports/etapa3/topicos_nmf.json)
+- [Cinco temas de insatisfação](reports/etapa3/cinco_temas.json)
+
+### Produto
+
 - [Protótipo — Painel de Voz do Cliente](produto/painel_voz_cliente.html)
-- [Modelo de negócios](docs/MODELO_NEGOCIO.md)
-- [Esboço do storytelling](docs/STORYTELLING.md)
-- [Rascunho do relatório técnico final](docs/RELATORIO_FINAL_RASCUNHO.md)
-- [Rascunho da apresentação final](docs/APRESENTACAO_STORYTELLING_RASCUNHO.md)
-- [Execução técnica final pendente](docs/EXECUCAO_FINAL_PENDENTE.md)
-- [Etapa 3 — cinco temas e otimização de C (Lucas)](docs/ETAPA3_TEMAS_E_OTIMIZACAO.md)
-- [Evidências dos experimentos da Etapa 3](reports/etapa3/)
-- [Relatório Etapa 1 em PDF](%5BPA2%5D%20Etapa%201%20-%20Drop%20Table%20-%20V280826.pdf)
 
-Este repositório é público. Os links acima podem ser abertos e baixados sem login no GitHub.
+### Histórico
 
-## Objetivo
+- [Relatório revisado da Etapa 1](%5BPA2%5D%20Etapa%201%20-%20Drop%20Table%20-%20V280826.pdf)
+- [Validação dos comentários do professor](VALIDACAO_COMENTARIOS.md)
+- [Cronograma mais recente](Cronograma%20-%20V191026.xlsx)
 
-Aplicar aquisição e preparação de dados, análise exploratória, processamento de linguagem natural e aprendizado de máquina para:
+## Resultados principais
 
-- preparar e documentar avaliações textuais em português;
-- analisar a distribuição das notas e os principais termos;
-- classificar sentimentos em positivo, neutro e negativo;
-- identificar temas recorrentes de insatisfação;
-- apresentar métricas, visualizações e recomendações de negócio.
+O pipeline tratado e avaliado apresentou:
 
-## Fonte dos dados
+- **34.898** avaliações textuais válidas;
+- **27.918** registros de treino;
+- **6.980** registros de teste;
+- **80,40%** de acurácia;
+- **80,69%** de F1 para a classe negativa;
+- **82,67%** de recall para a classe negativa;
+- melhor valor de regularização **C = 1** na grade avaliada.
 
-[Brazilian E-Commerce Public Dataset by Olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
+Na exploração das 8.196 avaliações negativas de treino, atraso ou não recebimento foi o tema mais frequente entre as cinco categorias definidas, com **2.700 menções (32,94%)**.
 
-Os arquivos brutos do conjunto de dados não são versionados neste repositório. As instruções de obtenção e preparação serão mantidas na documentação e nos notebooks.
+Cada número acima está ligado a código e evidência em [Rastreabilidade dos resultados](docs/RASTREABILIDADE_RESULTADOS.md).
 
-## Estrutura
+## Estrutura do repositório
 
 ```text
 .
-|-- data/
-|   |-- raw/                 # dados originais locais
-|   `-- processed/           # dados tratados locais
-|-- docs/
-|   `-- rascunhos/           # versões anteriores preservadas
-|-- notebooks/               # EDA, preparação, NLP e modelagem
-|-- reports/
-|   `-- figures/             # gráficos e imagens dos relatórios
-|-- src/                     # preparação e treinamento reproduzíveis
-|-- Cronograma - V191026.xlsx
-|-- [PA2] Etapa 1 - Drop Table - V280826.docx
-|-- VALIDACAO_COMENTARIOS.md
-|-- requirements.txt
-`-- README.md
+├── data/
+│   ├── raw/                 # instruções; dados brutos não versionados
+│   └── processed/           # instruções; artefatos locais não versionados
+├── docs/                    # documentação técnica e relatórios
+├── produto/                 # protótipo analítico
+├── reports/
+│   ├── etapa3/              # evidências de execução versionadas
+│   └── figures/             # figuras derivadas dos resultados
+├── src/                     # código reproduzível
+├── requirements-etapa3.txt  # versões usadas nos experimentos da Etapa 3
+└── README.md
 ```
+
+## Reprodução
+
+1. Baixe o conjunto público da Olist a partir do Kaggle.
+2. Coloque `olist_order_reviews_dataset.csv` em `data/raw/`.
+3. Instale as dependências.
+4. Execute a sequência:
+
+```text
+python -m pip install -r requirements-etapa3.txt
+python -m src.preparacao
+python -m src.treinamento
+python -m src.etapa3
+python -m src.temas_insatisfacao
+python -m src.figuras_resultados
+```
+
+Detalhes, saídas esperadas e conferência de hashes estão em [Como reproduzir os resultados](docs/REPRODUCAO.md).
+
+## Integridade e reprodutibilidade
+
+A execução versionada registra:
+
+- Python **3.12.14**;
+- scikit-learn **1.9.1**;
+- NumPy **2.5.4**;
+- pandas **3.1.0**;
+- semente aleatória **42**;
+- hashes SHA-256 dos arquivos de treino e teste usados nos experimentos.
+
+Essas informações estão em `reports/etapa3/execucao.json`.
 
 ## Equipe
 
-- Igor Eduardo Dallan do Couto - RA 10748144
-- Jaqueline de Oliveira Alves - RA 10755023
+- Igor Eduardo Dallan do Couto — RA 10748144
+- Jaqueline de Oliveira Alves — RA 10755023
 - Kayo Oliveira Nukui — RA 10356420
 - Lucas de Lima Mendes — RA 10756562
-
-## Situação
-
-- [x] Definição do grupo, organização fictícia e área de atuação
-- [x] Seleção e descrição inicial do conjunto de dados
-- [x] Objetivos, metas e cronograma inicial
-- [x] Comentários do professor atendidos no relatório e documentados no repositório
-- [x] Pipeline de preparação e treinamento da base implementado e validado
-- [x] Preparação e tratamento da base
-- [x] Modelo-base de classificação de sentimentos aplicado
-- [x] Métricas de avaliação calculadas
-- [x] Etapa 3 (Lucas): cinco temas recorrentes, com evidências e limitações
-- [x] Etapa 3 (Lucas): busca de C por validação cruzada; selecionado C = 1
-- [x] Etapa 3: resultados preliminares, produto analítico e rascunho de modelo de negócios
-- [x] Etapa 3: esboço do storytelling
-- [ ] Validação adicional agrupada por pedido (recomendação metodológica)
-- [ ] Consolidação da análise exploratória em gráficos finais
-- [ ] Relatório técnico final
-- [ ] Apresentação final do storytelling
-- [ ] Vídeo de apresentação no YouTube
-
-
-## Execução das análises finais
-
-Depois de preparar os dados localmente, a EDA final e a validação operacional agrupada por pedido podem ser executadas em sequência:
-
-```text
-python -m src.finalizar_analise
-```
-
-O comando gera as figuras em `reports/figures/` e os resultados da validação em `reports/etapa3/validacao_operacional/`. Os CSVs processados permanecem fora do GitHub.
