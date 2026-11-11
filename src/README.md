@@ -1,29 +1,25 @@
 # Código-fonte
 
-- `preparacao.py`: valida, limpa e rotula as avaliações; remove duplicidade e cria conjuntos estratificados de treino e teste.
-- `treinamento.py`: ajusta o baseline TF-IDF com regressão logística, avalia o teste e salva modelo, previsões e métricas.
-- `etapa3.py`: executa exploração NMF e busca do hiperparâmetro C por validação cruzada.
-- `temas_insatisfacao.py`: identifica cinco temas exploratórios de insatisfação por regras lexicais multirrótulo.
-- `etapa3_validacao.py`: realiza auditoria de pedidos compartilhados, divisão agrupada por `order_id`, validação cruzada agrupada, calibração e estudo de limiares.
-- `eda_final.py`: gera as figuras e o resumo da análise exploratória final.
-- `finalizar_analise.py`: executa EDA final e validação operacional em sequência.
+## Cadeia usada nos resultados do relatório
 
-## Execução principal
+- `preparacao.py` — valida, limpa e rotula as avaliações; remove duplicidades e cria treino/teste.
+- `treinamento.py` — treina o baseline TF-IDF + Regressão Logística e calcula métricas.
+- `etapa3.py` — executa NMF exploratória e a busca do parâmetro C por validação cruzada.
+- `temas_insatisfacao.py` — aplica as cinco regras temáticas às avaliações negativas do treino.
+- `figuras_resultados.py` — transforma as evidências versionadas em gráficos para relatório/apresentação.
 
-Com o CSV bruto disponível em `data/raw/`:
+Execução:
 
 ```text
 python -m src.preparacao
 python -m src.treinamento
 python -m src.etapa3
 python -m src.temas_insatisfacao
-python -m src.finalizar_analise
+python -m src.figuras_resultados
 ```
 
-Para executar apenas as análises finais, quando `treino.csv` e `teste.csv` já existirem:
+A relação entre números, código e evidências está em [`docs/RASTREABILIDADE_RESULTADOS.md`](../docs/RASTREABILIDADE_RESULTADOS.md).
 
-```text
-python -m src.finalizar_analise
-```
+## Outros arquivos
 
-O detalhamento das decisões está na pasta [`docs/`](../docs/).
+`etapa3_validacao.py` contém um experimento adicional de validação operacional. Seus resultados não são utilizados no relatório final enquanto não houver evidência de execução versionada.
