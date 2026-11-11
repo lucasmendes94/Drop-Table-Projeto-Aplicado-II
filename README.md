@@ -12,8 +12,8 @@ O conjunto de dados utilizado é o **Brazilian E-Commerce Public Dataset by Olis
 
 ### Entrega e documentação
 
-- [Relatório técnico final — versão de trabalho](docs/RELATORIO_FINAL_RASCUNHO.md)
-- [Storytelling — versão de trabalho](docs/APRESENTACAO_STORYTELLING_RASCUNHO.md)
+- [Relatório técnico final](docs/RELATORIO_TECNICO_FINAL.md)
+- [Apresentação do storytelling](docs/APRESENTACAO_STORYTELLING.md)
 - [Rastreabilidade dos resultados](docs/RASTREABILIDADE_RESULTADOS.md)
 - [Como reproduzir os resultados](docs/REPRODUCAO.md)
 - [Tratamento da base](docs/TRATAMENTO_BASE_DADOS.md)
