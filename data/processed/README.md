@@ -1,6 +1,6 @@
 # Dados processados
 
-Esta pasta recebe, apenas no ambiente local, os dados e artefatos produzidos pelos módulos `src.preparacao` e `src.treinamento`:
+Esta pasta armazena os dados e artefatos produzidos pelos módulos `src.preparacao` e `src.treinamento`:
 
 - `avaliacoes_preparadas.csv`: base limpa e rotulada;
 - `treino.csv` e `teste.csv`: partição estratificada;
@@ -9,4 +9,4 @@ Esta pasta recebe, apenas no ambiente local, os dados e artefatos produzidos pel
 - `modelo/metricas_modelo.json`: métricas no conjunto de teste;
 - `modelo/previsoes_teste.csv`: rótulos reais e previstos.
 
-Esses arquivos não devem ser enviados ao GitHub.
+Esses oito artefatos fazem parte da entrega e são versionados por exceção explícita no `.gitignore`. Novos arquivos fora dessa lista permanecem ignorados.

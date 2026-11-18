@@ -1,8 +1,8 @@
 # Figuras
 
-Esta pasta reúne gráficos derivados dos resultados versionados do projeto.
+Esta pasta reúne quatro gráficos em SVG já versionados (`desempenho_modelo.svg`, `distribuicao_sentimentos_resumo.svg`, `otimizacao_c.svg` e `temas_insatisfacao.svg`), derivados dos resultados do projeto.
 
-As figuras de desempenho do modelo, otimização de C e temas de insatisfação podem ser regeneradas com:
+Três figuras equivalentes em formato PNG (`desempenho_modelo.png`, `otimizacao_c.png` e `temas_insatisfacao.png`) podem ser geradas localmente a partir das evidências em `reports/etapa3/` com:
 
 ```text
 python -m src.figuras_resultados

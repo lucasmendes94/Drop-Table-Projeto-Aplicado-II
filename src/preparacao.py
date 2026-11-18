@@ -1,4 +1,16 @@
-"""Preparação reproduzível das avaliações textuais da Olist."""
+"""Preparação das avaliações textuais da Olist.
+
+Lê o CSV bruto de avaliações, junta título e mensagem, normaliza o texto,
+cria a classe de sentimento a partir da nota e remove textos vazios,
+textos com rótulos conflitantes e duplicatas. Depois divide a base em
+treino e teste (80/20, estratificado, semente 42).
+
+Uso, a partir da raiz do projeto:
+    python -m src.preparacao
+
+Saídas em data/processed/: avaliacoes_preparadas.csv, treino.csv, teste.csv
+e relatorio_preparacao.json.
+"""
 
 from __future__ import annotations
 
@@ -29,7 +41,10 @@ MAPA_SENTIMENTO = {
 
 
 def normalizar_texto(valor: object) -> str:
-    """Normaliza o texto sem remover acentos nem palavras de negação."""
+    """Normaliza o texto sem remover acentos nem palavras de negação.
+
+    Exemplo: "Produto NÃO chegou!!! Comprei 2" -> "produto não chegou comprei numero"
+    """
     if pd.isna(valor):
         return ""
     texto = unicodedata.normalize("NFKC", str(valor)).lower()
@@ -50,7 +65,10 @@ def carregar_avaliacoes(caminho: str | Path) -> pd.DataFrame:
 
 
 def preparar_avaliacoes(dados: pd.DataFrame) -> tuple[pd.DataFrame, dict[str, object]]:
-    """Limpa avaliações, cria o rótulo e remove duplicidade/vazamento textual."""
+    """Limpa as avaliações, cria o rótulo de sentimento e remove duplicatas.
+
+    Retorna a base preparada e um resumo com as contagens de cada filtro.
+    """
     total_inicial = len(dados)
     trabalho = dados.loc[:, sorted(COLUNAS_OBRIGATORIAS)].copy()
     trabalho["review_score"] = pd.to_numeric(trabalho["review_score"], errors="coerce")
@@ -102,7 +120,7 @@ def dividir_base(
     proporcao_teste: float = 0.20,
     semente: int = 42,
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
-    """Cria conjuntos estratificados e determinísticos de treino e teste."""
+    """Divide a base em treino e teste mantendo a proporção de cada sentimento."""
     treino, teste = train_test_split(
         dados,
         test_size=proporcao_teste,
@@ -118,7 +136,7 @@ def executar_preparacao(
     proporcao_teste: float = 0.20,
     semente: int = 42,
 ) -> dict[str, object]:
-    """Executa a preparação e grava bases e relatório de qualidade."""
+    """Executa a preparação completa e grava as bases e o relatório de contagens."""
     saida = Path(diretorio_saida)
     saida.mkdir(parents=True, exist_ok=True)
     preparados, resumo = preparar_avaliacoes(carregar_avaliacoes(entrada))
@@ -144,15 +162,20 @@ def executar_preparacao(
     return resumo
 
 
+BASE_DIR = Path(__file__).resolve().parents[1]
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Prepara as avaliações da Olist.")
     parser.add_argument(
         "--entrada",
-        default="data/raw/olist_order_reviews_dataset.csv",
+        default=str(BASE_DIR / "data" / "raw" / "olist_order_reviews_dataset.csv"),
         help="Caminho do CSV bruto.",
     )
     parser.add_argument(
-        "--saida", default="data/processed", help="Diretório dos dados preparados."
+        "--saida",
+        default=str(BASE_DIR / "data" / "processed"),
+        help="Diretório dos dados preparados.",
     )
     parser.add_argument("--teste", type=float, default=0.20, help="Proporção de teste.")
     parser.add_argument("--semente", type=int, default=42, help="Semente aleatória.")
@@ -161,6 +184,7 @@ def main() -> None:
         argumentos.entrada, argumentos.saida, argumentos.teste, argumentos.semente
     )
     print(json.dumps(resumo, ensure_ascii=False, indent=2))
+
 
 
 if __name__ == "__main__":
