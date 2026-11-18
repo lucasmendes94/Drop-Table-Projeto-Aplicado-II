@@ -21,6 +21,7 @@ O conjunto de dados utilizado é o **[Brazilian E-Commerce Public Dataset by Oli
 - [Método analítico](docs/METODO_ANALITICO.md)
 - [Resultados preliminares e produto](docs/RESULTADOS_PRELIMINARES.md)
 - [Análise de temas e otimização](docs/ETAPA3_TEMAS_E_OTIMIZACAO.md)
+- [Análise de erros da classe neutra](docs/ANALISE_ERROS_CLASSE_NEUTRA.md)
 
 ### Evidências de execução
 
@@ -33,7 +34,7 @@ O conjunto de dados utilizado é o **[Brazilian E-Commerce Public Dataset by Oli
 
 ### Produto
 
-- [Protótipo — Painel de Voz do Cliente](produto/painel_voz_cliente.html)
+- [Painel de Voz do Cliente (métricas históricas e triagem ao vivo)](produto/painel_voz_cliente.html)
 
 ### Histórico
 
@@ -70,7 +71,8 @@ Cada número acima está ligado a código e evidência em [Rastreabilidade dos r
 ├── reports/
 │   ├── etapa3/              # evidências de execução versionadas
 │   └── figures/             # 4 SVGs versionados e saída PNG do script de figuras
-├── src/                     # código reproduzível
+├── src/                     # código reproduzível (preparação, treino, análise e API)
+├── tests/                   # testes de integração da API de triagem e do painel
 ├── requirements.txt         # dependências gerais e notebooks
 ├── requirements-etapa3.txt  # versões usadas nos experimentos da Etapa 3 (+ matplotlib)
 └── README.md
@@ -92,6 +94,49 @@ python -m src.figuras_resultados
 ```
 
 Detalhes, saídas esperadas e conferência de hashes estão em [Como reproduzir os resultados](docs/REPRODUCAO.md).
+
+## Demonstração local: API de triagem e painel (Etapa 4)
+
+O painel original já exibia os indicadores históricos do classificador e os cinco temas exploratórios de insatisfação. Na Etapa 4, foi integrado a ele um formulário para triagem de novas avaliações em tempo real via API local.
+
+O serviço em `src/api_triagem.py` usa `http.server.ThreadingHTTPServer` (biblioteca padrão do Python) e as dependências já listadas em `requirements-etapa3.txt` (`joblib`, `scikit-learn`, `pandas`, `numpy`, `scipy`). Na inicialização, o servidor carrega `data/processed/modelo/modelo_sentimento.joblib` uma única vez na memória. Cada requisição `POST /triagem` recebe um JSON com `texto`, valida a entrada, aplica `normalizar_texto` de `src/preparacao.py` e devolve `sentimento` (`negativo`, `neutro` ou `positivo`) e `encaminhar_para_revisao` (`true` quando a previsão é `negativo`). O histórico exibido no painel vale apenas para a sessão aberta no navegador; o MVP não armazena avaliações de forma permanente, não executa monitoramento automático nem se integra à base da Olist em tempo real.
+
+### Iniciar o serviço e rodar os testes locais
+
+```text
+python -m pip install -r requirements-etapa3.txt
+python -m src.api_triagem
+```
+
+- Painel de Voz do Cliente: `http://127.0.0.1:8000/`
+- Endpoint de triagem: `POST http://127.0.0.1:8000/triagem`
+- Testes de integração locais: `python -m pytest -v tests/test_api_triagem.py`
+
+### Exemplo de requisição
+
+```powershell
+Invoke-RestMethod -Uri "http://127.0.0.1:8000/triagem" `
+  -Method Post `
+  -ContentType "application/json" `
+  -Body '{"texto": "Produto chegou atrasado e com defeito na embalagem."}'
+```
+
+Resposta esperada (`200 OK`):
+
+```json
+{
+  "sentimento": "negativo",
+  "encaminhar_para_revisao": true
+}
+```
+
+### Roteiro curto de demonstração ao vivo
+
+1. Execute `python -m src.api_triagem` na raiz do repositório e abra `http://127.0.0.1:8000/` no navegador.
+2. Mostre os indicadores históricos no topo do painel (acurácia de 80,40%, F1 negativo de 80,69% e F1 neutro de 33,72%) e as barras dos cinco temas de insatisfação.
+3. No formulário *Triagem de avaliação em tempo real*, envie `"Produto chegou atrasado e com defeito."` para mostrar o retorno `sentimento: "negativo"` e `encaminhar_para_revisao: true`.
+4. Envie `"Entrega rápida, produto excelente!"` (`encaminhar_para_revisao: false`) e depois envie `"!!!"` ou o campo vazio para mostrar a validação retornando erro (`HTTP 400`) sem interromper o serviço.
+5. Abra [Análise de erros da classe neutra](docs/ANALISE_ERROS_CLASSE_NEUTRA.md) e apresente o caso `f29bbead1034936360ff92f70abbe8f6` (nota 2, `"Produto demorou muito para chegar"`), previsto como `neutro`. Explique que a classe de referência neutra vem da nota 3, que nota e comentário podem divergir e que uma previsão neutra pode deixar uma reclamação sem alerta automático no MVP.
 
 ## Integridade e reprodutibilidade
 

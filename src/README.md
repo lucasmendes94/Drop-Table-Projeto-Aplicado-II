@@ -7,6 +7,7 @@
 - `etapa3.py`: executa NMF exploratória e a busca do parâmetro C por validação cruzada.
 - `temas_insatisfacao.py`: aplica as cinco regras temáticas às avaliações negativas do treino.
 - `figuras_resultados.py`: transforma as evidências versionadas em três gráficos PNG (`desempenho_modelo.png`, `otimizacao_c.png`, `temas_insatisfacao.png`).
+- `api_triagem.py`: carrega `data/processed/modelo/modelo_sentimento.joblib` uma vez na inicialização, expõe `POST /triagem` e serve `produto/painel_voz_cliente.html` no mesmo endereço local.
 
 Execução:
 
