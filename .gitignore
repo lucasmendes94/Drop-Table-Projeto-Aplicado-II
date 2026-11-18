@@ -1,8 +1,19 @@
-# Dados locais
+# Dados locais (exceções explícitas para os oito artefatos da entrega)
 data/raw/*
-data/processed/*
 !data/raw/README.md
+!data/raw/olist_order_reviews_dataset.csv
+
+data/processed/*
 !data/processed/README.md
+!data/processed/avaliacoes_preparadas.csv
+!data/processed/relatorio_preparacao.json
+!data/processed/treino.csv
+!data/processed/teste.csv
+!data/processed/modelo/
+data/processed/modelo/*
+!data/processed/modelo/metricas_modelo.json
+!data/processed/modelo/modelo_sentimento.joblib
+!data/processed/modelo/previsoes_teste.csv
 
 # Python e notebooks
 __pycache__/
@@ -11,7 +22,8 @@ __pycache__/
 .venv/
 venv/
 
-# Arquivos locais e credenciais
+# Arquivos locais do sistema e credenciais
 .env
 .DS_Store
 Thumbs.db
+*.zip

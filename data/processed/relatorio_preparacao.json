@@ -1,0 +1,17 @@
+{
+  "linhas_originais": 99224,
+  "linhas_sem_texto": 56656,
+  "linhas_com_texto_ambiguo": 5169,
+  "duplicatas_textuais_removidas": 2501,
+  "linhas_preparadas": 34898,
+  "distribuicao_sentimentos": {
+    "positivo": 21488,
+    "negativo": 10245,
+    "neutro": 3165
+  },
+  "linhas_treino": 27918,
+  "linhas_teste": 6980,
+  "proporcao_teste": 0.2,
+  "semente_aleatoria": 42,
+  "sobreposicao_textual_treino_teste": 0
+}
