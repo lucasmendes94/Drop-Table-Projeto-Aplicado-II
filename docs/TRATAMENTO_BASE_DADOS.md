@@ -28,9 +28,9 @@ São gravados o modelo treinado, as previsões do teste, a matriz de confusão, 
 
 ## Resultado da validação
 
-Em 8 de setembro de 2026, o pipeline foi executado com o arquivo público de avaliações da Olist. Das 99.224 linhas originais, 34.898 avaliações textuais válidas permaneceram após a limpeza: 21.488 positivas, 10.245 negativas e 3.165 neutras. A divisão produziu 27.918 exemplos de treino e 6.980 de teste, sem sobreposição textual.
+Em 8 de setembro de 2026, o pipeline foi executado com o arquivo público de avaliações da Olist. Das 99.224 linhas originais, 34.898 avaliações textuais válidas permaneceram após a limpeza: 21.488 positivas, 10.245 negativas e 3.165 neutras. A divisão produziu 27.918 exemplos de treino e 6.980 de teste, sem texto limpo repetido entre os dois conjuntos. Depois da remoção de acentos feita pelo TF-IDF, 123 avaliações de teste ficam iguais a avaliações de treino; o notebook 04 mede esse efeito, que é pequeno.
 
-O modelo-base obteve acurácia de 80,40%. Para a classe negativa, alcançou precisão de 78,79%, recall de 82,67% e F1-score de 80,69%, atendendo à meta mínima de 0,80 definida para o projeto. O desempenho da classe neutra foi inferior (F1-score de 33,72%), o que indica a necessidade de comparar outros modelos, ajustar hiperparâmetros e investigar a ambiguidade das avaliações de nota 3 nas etapas seguintes.
+O modelo-base obteve acurácia de 80,40%. Para a classe negativa, alcançou precisão de 78,79%, recall de 82,67% e F1-score de 80,69%, acima da meta mínima de 0,80 definida para o projeto, com margem estreita. O desempenho da classe neutra foi inferior (F1-score de 33,72%), o que indica a necessidade de comparar outros modelos, ajustar hiperparâmetros e investigar a ambiguidade das avaliações de nota 3 nas etapas seguintes.
 
 ## Execução
 
@@ -41,7 +41,7 @@ python -m src.preparacao
 python -m src.treinamento
 ```
 
-Os arquivos gerados ficam em `data/processed/` e não são versionados, conforme o arquivo `.gitignore`. O relatório `relatorio_preparacao.json` permite auditar as exclusões e confirmar que não há sobreposição de textos entre treino e teste. O arquivo `metricas_modelo.json` registra o desempenho obtido.
+Os arquivos gerados ficam em `data/processed/` e têm versionamento liberado por exceção explícita no `.gitignore`. O relatório `relatorio_preparacao.json` permite auditar as exclusões e confirmar que nenhum texto limpo aparece ao mesmo tempo no treino e no teste. O arquivo `metricas_modelo.json` registra o desempenho obtido.
 
 ## Reprodutibilidade e prevenção de vazamento
 

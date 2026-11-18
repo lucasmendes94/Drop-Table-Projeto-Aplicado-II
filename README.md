@@ -6,7 +6,7 @@ Projeto do 3º semestre do curso de Tecnologia em Banco de Dados da Universidade
 
 **Tema:** análise de sentimentos e de temas de insatisfação em avaliações de e-commerce.
 
-O conjunto de dados utilizado é o **Brazilian E-Commerce Public Dataset by Olist**. O projeto simula uma aplicação para a empresa fictícia **ConectaShop**, transformando avaliações textuais em informações estruturadas para apoio à experiência do cliente e às operações.
+O conjunto de dados utilizado é o **[Brazilian E-Commerce Public Dataset by Olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)** (arquivo `olist_order_reviews_dataset.csv`). O projeto simula uma aplicação para a empresa fictícia **ConectaShop**, transformando avaliações textuais em informações estruturadas para apoio à experiência do cliente e às operações.
 
 ## Navegação rápida
 
@@ -17,6 +17,7 @@ O conjunto de dados utilizado é o **Brazilian E-Commerce Public Dataset by Olis
 - [Rastreabilidade dos resultados](docs/RASTREABILIDADE_RESULTADOS.md)
 - [Como reproduzir os resultados](docs/REPRODUCAO.md)
 - [Tratamento da base](docs/TRATAMENTO_BASE_DADOS.md)
+- [Guia dos notebooks de análise](notebooks/README.md)
 - [Método analítico](docs/METODO_ANALITICO.md)
 - [Resultados preliminares e produto](docs/RESULTADOS_PRELIMINARES.md)
 - [Análise de temas e otimização](docs/ETAPA3_TEMAS_E_OTIMIZACAO.md)
@@ -61,24 +62,25 @@ Cada número acima está ligado a código e evidência em [Rastreabilidade dos r
 ```text
 .
 ├── data/
-│   ├── raw/                 # instruções; dados brutos não versionados
-│   └── processed/           # instruções; artefatos locais não versionados
+│   ├── raw/                 # base bruta Olist versionada por exceção no .gitignore
+│   └── processed/           # bases tratadas, modelo e métricas versionados
 ├── docs/                    # documentação técnica e relatórios
+├── notebooks/               # notebooks Jupyter (01 a 05) e guia de execução
 ├── produto/                 # protótipo analítico
 ├── reports/
 │   ├── etapa3/              # evidências de execução versionadas
-│   └── figures/             # figuras derivadas dos resultados
+│   └── figures/             # 4 SVGs versionados e saída PNG do script de figuras
 ├── src/                     # código reproduzível
-├── requirements-etapa3.txt  # versões usadas nos experimentos da Etapa 3
+├── requirements.txt         # dependências gerais e notebooks
+├── requirements-etapa3.txt  # versões usadas nos experimentos da Etapa 3 (+ matplotlib)
 └── README.md
 ```
 
 ## Reprodução
 
-1. Baixe o conjunto público da Olist a partir do Kaggle.
-2. Coloque `olist_order_reviews_dataset.csv` em `data/raw/`.
-3. Instale as dependências.
-4. Execute a sequência:
+1. O arquivo `data/raw/olist_order_reviews_dataset.csv` (fonte oficial: [Kaggle Olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)) já acompanha este repositório por exceção explícita no `.gitignore`.
+2. Instale as dependências.
+3. Execute a sequência a partir da raiz do projeto:
 
 ```text
 python -m pip install -r requirements-etapa3.txt

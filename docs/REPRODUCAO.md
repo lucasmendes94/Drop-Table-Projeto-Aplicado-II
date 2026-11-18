@@ -4,17 +4,9 @@
 
 Fonte oficial utilizada pelo projeto:
 
-**Brazilian E-Commerce Public Dataset by Olist — Kaggle**
+**Brazilian E-Commerce Public Dataset by Olist (Kaggle)** (`https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce`)
 
-Baixe o conjunto de dados e coloque o arquivo:
-
-`olist_order_reviews_dataset.csv`
-
-em:
-
-`data/raw/olist_order_reviews_dataset.csv`
-
-Os dados brutos não são versionados no GitHub.
+O arquivo `data/raw/olist_order_reviews_dataset.csv` já acompanha o repositório por exceção explícita no `.gitignore`. Caso deseje baixá-lo novamente, salve-o no mesmo caminho.
 
 ## 2. Criar o ambiente
 
@@ -72,7 +64,15 @@ Evidências versionadas:
 - `reports/etapa3/cinco_temas.csv`
 - `reports/etapa3/cinco_temas.json`
 
-## 7. Conferir integridade
+## 7. Gerar figuras em PNG
+
+```text
+python -m src.figuras_resultados
+```
+
+O script lê as evidências em `reports/etapa3/` e gera três arquivos PNG em `reports/figures/` (`desempenho_modelo.png`, `otimizacao_c.png` e `temas_insatisfacao.png`). Os quatro arquivos SVG já presentes em `reports/figures/` (`desempenho_modelo.svg`, `distribuicao_sentimentos_resumo.svg`, `otimizacao_c.svg` e `temas_insatisfacao.svg`) são versões pré-geradas e versionadas no repositório.
+
+## 8. Conferir integridade
 
 Compare os hashes de `treino.csv` e `teste.csv` com os valores registrados em `reports/etapa3/execucao.json`.
 
@@ -85,6 +85,7 @@ python -m src.preparacao
 python -m src.treinamento
 python -m src.etapa3
 python -m src.temas_insatisfacao
+python -m src.figuras_resultados
 ```
 
 O relatório técnico final utiliza somente resultados ligados a essa cadeia de execução e às evidências versionadas.

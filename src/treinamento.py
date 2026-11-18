@@ -1,4 +1,14 @@
-"""Treinamento do modelo-base de classificação de sentimentos."""
+"""Treinamento do modelo oficial de classificação de sentimento.
+
+Treina o pipeline TF-IDF + Regressão Logística com pesos balanceados em
+treino.csv, gera as previsões para teste.csv e grava o modelo e as métricas.
+
+Uso, a partir da raiz do projeto (depois de src.preparacao):
+    python -m src.treinamento
+
+Saídas em data/processed/modelo/: modelo_sentimento.joblib,
+metricas_modelo.json e previsoes_teste.csv.
+"""
 
 from __future__ import annotations
 
@@ -18,7 +28,7 @@ CLASSES = ["negativo", "neutro", "positivo"]
 
 
 def carregar_conjunto(caminho: str | Path) -> pd.DataFrame:
-    """Carrega e valida um conjunto preparado."""
+    """Carrega um CSV preparado e confere se texto e sentimento estão preenchidos."""
     dados = pd.read_csv(caminho)
     obrigatorias = {"texto_limpo", "sentimento"}
     ausentes = sorted(obrigatorias.difference(dados.columns))
@@ -30,7 +40,7 @@ def carregar_conjunto(caminho: str | Path) -> pd.DataFrame:
 
 
 def criar_pipeline() -> Pipeline:
-    """Cria o baseline TF-IDF + regressão logística balanceada."""
+    """Cria o pipeline oficial: TF-IDF (unigramas e bigramas) + Regressão Logística balanceada."""
     return Pipeline(
         steps=[
             (
@@ -60,9 +70,12 @@ def treinar_e_avaliar(
     caminho_teste: str | Path,
     diretorio_saida: str | Path,
 ) -> dict[str, object]:
-    """Treina o modelo, avalia somente no teste e salva resultados reproduzíveis."""
+    """Treina no conjunto de treino, prevê o conjunto de teste e grava modelo, previsões e métricas."""
     treino = carregar_conjunto(caminho_treino)
     teste = carregar_conjunto(caminho_teste)
+    # Compara o texto limpo, que ainda tem acentos. O TF-IDF remove acentos, então
+    # frases como "ótimo" e "otimo" passam por esta checagem mas chegam iguais ao
+    # modelo; o notebook 04 mede esse efeito.
     sobreposicao = set(treino["texto_limpo"]).intersection(teste["texto_limpo"])
     if sobreposicao:
         raise ValueError("Há textos repetidos entre treino e teste; possível vazamento.")
@@ -106,11 +119,26 @@ def treinar_e_avaliar(
     return metricas
 
 
+BASE_DIR = Path(__file__).resolve().parents[1]
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Treina o classificador de sentimentos.")
-    parser.add_argument("--treino", default="data/processed/treino.csv")
-    parser.add_argument("--teste", default="data/processed/teste.csv")
-    parser.add_argument("--saida", default="data/processed/modelo")
+    parser.add_argument(
+        "--treino",
+        default=str(BASE_DIR / "data" / "processed" / "treino.csv"),
+        help="Caminho do CSV de treino.",
+    )
+    parser.add_argument(
+        "--teste",
+        default=str(BASE_DIR / "data" / "processed" / "teste.csv"),
+        help="Caminho do CSV de teste.",
+    )
+    parser.add_argument(
+        "--saida",
+        default=str(BASE_DIR / "data" / "processed" / "modelo"),
+        help="Diretório de saída dos artefatos do modelo.",
+    )
     argumentos = parser.parse_args()
     metricas = treinar_e_avaliar(argumentos.treino, argumentos.teste, argumentos.saida)
     print(json.dumps(metricas, ensure_ascii=False, indent=2))
@@ -118,4 +146,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
