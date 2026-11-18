@@ -89,3 +89,19 @@ python -m src.figuras_resultados
 ```
 
 O relatório técnico final utiliza somente resultados ligados a essa cadeia de execução e às evidências versionadas.
+
+## 9. Executar a API de triagem e os testes locais (Etapa 4)
+
+Após gerar ou manter os artefatos em `data/processed/modelo/`, inicie o serviço local que expõe `POST /triagem` e serve `produto/painel_voz_cliente.html`:
+
+```text
+python -m src.api_triagem
+```
+
+O painel fica acessível em `http://127.0.0.1:8000/`. Para executar a suíte de testes de integração da API e do painel:
+
+```text
+python -m pytest -v tests/test_api_triagem.py
+```
+
+O exemplo de requisição e o roteiro de demonstração ao vivo estão no `README.md` principal.
