@@ -10,12 +10,16 @@ O arquivo `data/raw/olist_order_reviews_dataset.csv` já acompanha o repositóri
 
 ## 2. Criar o ambiente
 
-O experimento da Etapa 3 registrou Python 3.12.14 e as versões das bibliotecas em `requirements-etapa3.txt`.
-
-Instalação:
+Para reproduzir exatamente o ambiente dos experimentos da Etapa 3, use `requirements-etapa3.txt`, que registra as versões das bibliotecas utilizadas junto com Python 3.12.14:
 
 ```text
 python -m pip install -r requirements-etapa3.txt
+```
+
+Para executar também os notebooks e a suíte de testes da API, instale as dependências gerais do projeto:
+
+```text
+python -m pip install -r requirements.txt
 ```
 
 ## 3. Preparar a base
@@ -98,10 +102,12 @@ Após gerar ou manter os artefatos em `data/processed/modelo/`, inicie o serviç
 python -m src.api_triagem
 ```
 
-O painel fica acessível em `http://127.0.0.1:8000/`. Para executar a suíte de testes de integração da API e do painel:
+O painel fica acessível em `http://127.0.0.1:8000/`. Para executar a suíte de testes de integração da API e do painel, com `requirements.txt` instalado:
 
 ```text
 python -m pytest -v tests/test_api_triagem.py
 ```
+
+Os testes cobrem a rota `/health`, o carregamento do painel, classificações positivas e negativas, requisições sucessivas e entradas inválidas.
 
 O exemplo de requisição e o roteiro de demonstração ao vivo estão no `README.md` principal.
