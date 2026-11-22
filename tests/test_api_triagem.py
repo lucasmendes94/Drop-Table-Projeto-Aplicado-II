@@ -39,6 +39,14 @@ def _post_triagem(url_base: str, corpo: bytes) -> tuple[int, dict[str, object]]:
         return exc.code, json.loads(exc.read().decode("utf-8"))
 
 
+def test_health_retorna_ok(url_base: str) -> None:
+    with urllib.request.urlopen(f"{url_base}/health", timeout=5) as resp:
+        assert resp.status == 200
+        dados = json.loads(resp.read().decode("utf-8"))
+
+    assert dados == {"status": "ok"}
+
+
 def test_painel_servido_com_graficos_e_formulario(url_base: str) -> None:
     with urllib.request.urlopen(f"{url_base}/", timeout=5) as resp:
         assert resp.status == 200
