@@ -22,6 +22,7 @@ O conjunto de dados utilizado é o **[Brazilian E-Commerce Public Dataset by Oli
 - [Resultados preliminares e produto](docs/RESULTADOS_PRELIMINARES.md)
 - [Análise de temas e otimização](docs/ETAPA3_TEMAS_E_OTIMIZACAO.md)
 - [Análise de erros da classe neutra](docs/ANALISE_ERROS_CLASSE_NEUTRA.md)
+- [Painel Operacional de CX](docs/PAINEL_OPERACIONAL_CX.md)
 
 ### Evidências de execução
 
@@ -103,8 +104,10 @@ O serviço em `src/api_triagem.py` usa `http.server.ThreadingHTTPServer` (biblio
 
 ### Iniciar o serviço e rodar os testes locais
 
+Para executar o projeto completo, incluindo a suíte de testes da API, instale as dependências gerais:
+
 ```text
-python -m pip install -r requirements-etapa3.txt
+python -m pip install -r requirements.txt
 python -m src.api_triagem
 ```
 
