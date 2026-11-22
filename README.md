@@ -160,3 +160,54 @@ Essas informações estão em `reports/etapa3/execucao.json`.
 - Jaqueline de Oliveira Alves — RA 10755023
 - Kayo Oliveira Nukui — RA 10356420
 - Lucas de Lima Mendes — RA 10756562
+
+
+## Como validar o projeto
+
+O projeto pode ser validado localmente a partir do conteúdo disponível neste repositório.
+
+### 1. Instalar as dependências
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+### 2. Executar os testes automatizados
+
+```bash
+python -m pytest -v tests/test_api_triagem.py
+```
+
+A execução deve validar a disponibilidade da API, o carregamento do painel, classificações positivas, negativas e neutras, além do tratamento de entradas inválidas.
+
+### 3. Iniciar a API e o Painel Operacional de CX
+
+```bash
+python -m src.api_triagem
+```
+
+Com o servidor iniciado, acesse:
+
+```text
+http://127.0.0.1:8000/
+```
+
+### 4. Validar o endpoint de saúde
+
+Com o servidor em execução, acesse:
+
+```text
+http://127.0.0.1:8000/health
+```
+
+O retorno esperado é:
+
+```json
+{"status":"ok"}
+```
+
+### Reprodução completa
+
+Os procedimentos para reprodução das etapas de preparação, treinamento, avaliação e análise dos resultados estão documentados em [`docs/REPRODUCAO.md`](docs/REPRODUCAO.md).
+
+A relação entre os principais resultados, os códigos que os produziram e os respectivos arquivos de evidência está disponível em [`docs/RASTREABILIDADE_RESULTADOS.md`](docs/RASTREABILIDADE_RESULTADOS.md).
