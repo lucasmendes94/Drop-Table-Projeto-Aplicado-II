@@ -115,30 +115,43 @@ Mensagem:
 
 ## Slide 8 — Produto gerado
 
-**Painel de Voz do Cliente — ConectaShop**
+**Painel Operacional de CX — ConectaShop**
 
-O protótipo consolida:
+O produto integra o modelo treinado a uma API local e permite classificar novas avaliações em tempo real.
 
-- indicadores do modelo;
-- desempenho da classe negativa;
-- limitação da classe neutra;
-- cinco temas de insatisfação;
-- uma leitura de apoio à priorização.
+Fluxo:
 
-Usuários possíveis:
+**Avaliação → Painel → POST /triagem → normalização → modelo → sentimento → decisão de revisão**
+
+O painel apresenta:
+
+- indicadores históricos do modelo;
+- cinco temas exploratórios de insatisfação;
+- triagem manual de novas avaliações;
+- fila de atendimento da sessão;
+- contadores de itens triados, encaminhados e pendentes;
+- ação para marcar uma avaliação como tratada.
+
+Usuários:
 Customer Experience, atendimento, qualidade e operações.
 
 ---
 
-## Slide 9 — O que os resultados permitem concluir
+## Slide 9 — Limitações e aprendizado com os erros
 
 - o classificador alcançou 80,40% de acurácia;
 - a meta de F1 negativo acima de 0,80 foi atingida;
-- atraso/não recebimento foi o tema mais frequente entre as cinco regras analisadas;
-- a classe neutra ainda é difícil de identificar;
-- a análise temática é exploratória e não equivale a uma taxa oficial de falha operacional.
+- a classe neutra teve F1 de **33,72%**;
+- **303 avaliações negativas reais foram previstas como neutras**;
+- previsões neutras não geram alerta automático no MVP;
+- pequenas variações de escrita, como abreviações, podem alterar a classificação;
+- os temas identificados são exploratórios e não equivalem a taxas oficiais de falha operacional.
 
-**Todos os números apresentados possuem código e evidência correspondente no GitHub.**
+Mensagem:
+
+**O painel apoia a triagem, mas não substitui revisão humana em casos ambíguos.**
+
+Todos os resultados apresentados possuem código e evidência correspondente no GitHub.
 
 ---
 
@@ -153,7 +166,9 @@ O projeto entregou:
 - métricas de desempenho;
 - otimização reproduzível;
 - análise temática;
-- produto analítico;
+- Painel Operacional de CX integrado à API de triagem;
+- análise de erros da classe neutra;
+- testes de integração;
 - documentação de reprodução e rastreabilidade.
 
 **GitHub:** lucasmendes94/Drop-Table-Projeto-Aplicado-II
