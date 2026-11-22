@@ -64,6 +64,7 @@ O painel implementa:
 - exemplos rápidos para demonstração;
 - classificação em positivo, neutro ou negativo;
 - indicação de encaminhamento para revisão;
+- destaque visual de previsões neutras como **atenção**, sem alterar a regra da API;
 - contadores de avaliações triadas, encaminhadas e pendentes;
 - fila de atendimento da sessão;
 - filtro para exibir somente itens enviados para revisão;
@@ -97,7 +98,7 @@ python -m pytest -v tests/test_api_triagem.py
 
 A análise de erros mostrou F1 de 33,72% para a classe neutra.
 
-No conjunto de teste, **303 avaliações negativas reais foram classificadas como neutras**, correspondendo a 14,79% das avaliações negativas reais. Como o MVP só gera alerta automático quando a previsão é negativa, algumas reclamações podem não ser encaminhadas.
+No conjunto de teste, **303 avaliações negativas reais foram classificadas como neutras**, correspondendo a 14,79% das avaliações negativas reais. Como o MVP só gera alerta automático quando a previsão é negativa, algumas reclamações podem não ser encaminhadas. Por esse motivo, o painel passou a exibir previsões neutras em estado visual de **atenção**, em vez de tratá-las como um resultado positivo.
 
 Detalhes: `docs/ANALISE_ERROS_CLASSE_NEUTRA.md`.
 
