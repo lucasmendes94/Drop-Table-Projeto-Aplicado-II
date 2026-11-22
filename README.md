@@ -74,15 +74,15 @@ Cada número acima está ligado a código e evidência em [Rastreabilidade dos r
 │   └── figures/             # 4 SVGs versionados e saída PNG do script de figuras
 ├── src/                     # código reproduzível (preparação, treino, análise e API)
 ├── tests/                   # testes de integração da API de triagem e do painel
-├── requirements.txt         # dependências gerais e notebooks
-├── requirements-etapa3.txt  # versões usadas nos experimentos da Etapa 3 (+ matplotlib)
+├── requirements.txt         # ambiente atual: API, painel, testes e notebooks
+├── requirements-etapa3.txt  # ambiente histórico da Etapa 3 (scikit-learn 1.9.1)
 └── README.md
 ```
 
 ## Reprodução
 
 1. O arquivo `data/raw/olist_order_reviews_dataset.csv` (fonte oficial: [Kaggle Olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)) já acompanha este repositório por exceção explícita no `.gitignore`.
-2. Instale as dependências.
+2. Para reproduzir os resultados históricos da Etapa 3, instale `requirements-etapa3.txt`.
 3. Execute a sequência a partir da raiz do projeto:
 
 ```text
@@ -100,7 +100,7 @@ Detalhes, saídas esperadas e conferência de hashes estão em [Como reproduzir 
 
 O painel original já exibia os indicadores históricos do classificador e os cinco temas exploratórios de insatisfação. Na Etapa 4, foi integrado a ele um formulário para triagem de novas avaliações em tempo real via API local.
 
-O serviço em `src/api_triagem.py` usa `http.server.ThreadingHTTPServer` (biblioteca padrão do Python) e as dependências já listadas em `requirements-etapa3.txt` (`joblib`, `scikit-learn`, `pandas`, `numpy`, `scipy`). Na inicialização, o servidor carrega `data/processed/modelo/modelo_sentimento.joblib` uma única vez na memória. Cada requisição `POST /triagem` recebe um JSON com `texto`, valida a entrada, aplica `normalizar_texto` de `src/preparacao.py` e devolve `sentimento` (`negativo`, `neutro` ou `positivo`) e `encaminhar_para_revisao` (`true` quando a previsão é `negativo`). O histórico exibido no painel vale apenas para a sessão aberta no navegador; o MVP não armazena avaliações de forma permanente, não executa monitoramento automático nem se integra à base da Olist em tempo real.
+O serviço em `src/api_triagem.py` usa `http.server.ThreadingHTTPServer` (biblioteca padrão do Python). Para a API, o painel e os testes da Etapa 4, use `requirements.txt`, que fixa o scikit-learn 1.9.0 para compatibilidade com o artefato de modelo atualmente versionado. Na inicialização, o servidor carrega `data/processed/modelo/modelo_sentimento.joblib` uma única vez na memória. Cada requisição `POST /triagem` recebe um JSON com `texto`, valida a entrada, aplica `normalizar_texto` de `src/preparacao.py` e devolve `sentimento` (`negativo`, `neutro` ou `positivo`) e `encaminhar_para_revisao` (`true` quando a previsão é `negativo`). O histórico exibido no painel vale apenas para a sessão aberta no navegador; o MVP não armazena avaliações de forma permanente, não executa monitoramento automático nem se integra à base da Olist em tempo real.
 
 ### Iniciar o serviço e rodar os testes locais
 
@@ -171,6 +171,8 @@ O projeto pode ser validado localmente a partir do conteúdo disponível neste r
 ```bash
 python -m pip install -r requirements.txt
 ```
+
+Esse é o ambiente atual da API, do painel e dos testes. Para reproduzir a execução histórica da Etapa 3, use `requirements-etapa3.txt`.
 
 ### 2. Executar os testes automatizados
 

@@ -10,17 +10,21 @@ O arquivo `data/raw/olist_order_reviews_dataset.csv` já acompanha o repositóri
 
 ## 2. Criar o ambiente
 
-Para reproduzir exatamente o ambiente dos experimentos da Etapa 3, use `requirements-etapa3.txt`, que registra as versões das bibliotecas utilizadas junto com Python 3.12.14:
+O projeto mantém dois arquivos de dependências com finalidades diferentes.
+
+Para **reproduzir a execução histórica da Etapa 3**, use `requirements-etapa3.txt`. Esse arquivo corresponde ao ambiente registrado em `reports/etapa3/execucao.json`: Python 3.12.14 e scikit-learn 1.9.1.
 
 ```text
 python -m pip install -r requirements-etapa3.txt
 ```
 
-Para executar também os notebooks e a suíte de testes da API, instale as dependências gerais do projeto:
+Para **executar a API, o painel e os testes da Etapa 4**, use `requirements.txt`. O ambiente atual fixa scikit-learn 1.9.0 para compatibilidade com o arquivo `data/processed/modelo/modelo_sentimento.joblib` atualmente versionado.
 
 ```text
 python -m pip install -r requirements.txt
 ```
+
+Os dois arquivos não representam a mesma execução: `requirements-etapa3.txt` preserva a reprodução histórica dos resultados, enquanto `requirements.txt` é o ambiente operacional atual do produto e dos testes.
 
 ## 3. Preparar a base
 
@@ -96,7 +100,7 @@ O relatório técnico final utiliza somente resultados ligados a essa cadeia de 
 
 ## 9. Executar a API de triagem e os testes locais (Etapa 4)
 
-Após gerar ou manter os artefatos em `data/processed/modelo/`, inicie o serviço local que expõe `POST /triagem` e serve `produto/painel_voz_cliente.html`:
+Com `requirements.txt` instalado e os artefatos em `data/processed/modelo/`, inicie o serviço local que expõe `POST /triagem` e serve `produto/painel_voz_cliente.html`:
 
 ```text
 python -m src.api_triagem
@@ -108,6 +112,6 @@ O painel fica acessível em `http://127.0.0.1:8000/`. Para executar a suíte de 
 python -m pytest -v tests/test_api_triagem.py
 ```
 
-Os testes cobrem a rota `/health`, o carregamento do painel, classificações positivas e negativas, requisições sucessivas e entradas inválidas.
+Os testes cobrem a rota `/health`, o carregamento do painel, classificações positivas, negativas e o caso neutro/ambíguo, além de requisições sucessivas e entradas inválidas.
 
 O exemplo de requisição e o roteiro de demonstração ao vivo estão no `README.md` principal.
