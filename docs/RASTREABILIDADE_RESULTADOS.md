@@ -34,6 +34,9 @@ Um número só deve aparecer no relatório final quando existir:
 | Pedido incompleto: 520 / 6,34% | `src/temas_insatisfacao.py` | `reports/etapa3/cinco_temas.json` | mesmo comando |
 | 4.661 avaliações com ao menos um tema; 649 multirrótulo | `src/temas_insatisfacao.py` | `reports/etapa3/cinco_temas.json` | mesmo comando |
 | 19 pedidos compartilhados entre treino e teste | `src/etapa3.py` | `reports/etapa3/execucao.json` | `python -m src.etapa3` |
+| Classe neutra: precisão 27,30%, recall 44,08%, F1 33,72% | `src/treinamento.py` | `data/processed/modelo/metricas_modelo.json` e `docs/ANALISE_ERROS_CLASSE_NEUTRA.md` | `python -m src.treinamento` |
+| 303 avaliações negativas reais previstas como neutras | `src/treinamento.py` | `data/processed/modelo/previsoes_teste.csv`, `data/processed/teste.csv` e `docs/ANALISE_ERROS_CLASSE_NEUTRA.md` | `python -m src.treinamento` |
+| API classifica novas avaliações e encaminha negativas para revisão | `src/api_triagem.py` | `tests/test_api_triagem.py` e `produto/painel_voz_cliente.html` | `python -m src.api_triagem` + `python -m pytest -v tests/test_api_triagem.py` |
 
 ## Integridade dos conjuntos usados nos experimentos
 
