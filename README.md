@@ -15,7 +15,7 @@ O conjunto de dados utilizado é o **[Brazilian E-Commerce Public Dataset by Oli
 - [Relatório técnico final](docs/RELATORIO_TECNICO_FINAL.md)
 - [Apresentação do storytelling](docs/APRESENTACAO_STORYTELLING.md)
 - [Rastreabilidade dos resultados](docs/RASTREABILIDADE_RESULTADOS.md)
-- [Como reproduzir os resultados](docs/REPRODUCAO.md)
+- [Passo a passo detalhado para reprodução dos resultados](docs/REPRODUCAO.md)
 - [Tratamento da base](docs/TRATAMENTO_BASE_DADOS.md)
 - [Guia dos notebooks de análise](notebooks/README.md)
 - [Método analítico](docs/METODO_ANALITICO.md)
@@ -94,7 +94,7 @@ python -m src.temas_insatisfacao
 python -m src.figuras_resultados
 ```
 
-Detalhes, saídas esperadas e conferência de hashes estão em [Como reproduzir os resultados](docs/REPRODUCAO.md).
+Detalhes, saídas esperadas e conferência de hashes estão em [Passo a passo detalhado para reprodução dos resultados](docs/REPRODUCAO.md).
 
 ## Demonstração local: API de triagem e painel (Etapa 4)
 
