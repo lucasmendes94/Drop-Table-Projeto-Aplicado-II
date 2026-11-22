@@ -196,6 +196,8 @@ O painel apresenta:
 
 O histórico da fila é temporário e existe apenas enquanto a página permanece aberta. O MVP não persiste avaliações em banco de dados.
 
+A integração possui uma suíte de testes em `tests/test_api_triagem.py`, cobrindo a rota de saúde, carregamento do painel, classificações positivas e negativas, o caso ambíguo previsto como neutro, requisições sucessivas e entradas inválidas.
+
 A implementação e suas limitações estão detalhadas em `docs/PAINEL_OPERACIONAL_CX.md`.
 
 ## 12. Modelo de negócio
