@@ -148,7 +148,32 @@ Foram identificadas 4.661 avaliações com pelo menos uma correspondência e 649
 
 Esses resultados são exploratórios. As regras detectam menções textuais e não comprovam, isoladamente, a ocorrência operacional do problema. As evidências estão em `reports/etapa3/cinco_temas.json` e `cinco_temas.csv`.
 
-## 10. Produto gerado — Painel Operacional de CX
+## 10. Análise de erros da classe neutra
+
+Como a classe neutra apresentou o menor desempenho do classificador, foi realizada uma análise específica dos erros envolvendo essa classe a partir de `data/processed/teste.csv`, `data/processed/modelo/previsoes_teste.csv` e `data/processed/modelo/metricas_modelo.json`.
+
+No conjunto de teste:
+
+- precisão da classe neutra: **27,30%**;
+- recall da classe neutra: **44,08%**;
+- F1-score da classe neutra: **33,72%**;
+- suporte: **633 avaliações**.
+
+Foram identificados **1.097 erros envolvendo a classe neutra**. Entre eles, **303 avaliações negativas reais foram classificadas como neutras**, correspondendo a 14,79% das 2.049 avaliações negativas reais do teste.
+
+A análise dos exemplos mostrou três causas principais:
+
+1. avaliações com nota 3, mas comentário claramente positivo ou negativo;
+2. avaliações positivas ou negativas escritas em tom moderado, curto ou misto;
+3. efeito do desbalanceamento das classes combinado ao uso de `class_weight="balanced"`.
+
+Um caso rastreável é a avaliação de nota 2 com o texto **"Produto demorou muito para chegar"**, cujo rótulo real é negativo, mas que foi prevista como neutra.
+
+Essa análise é importante para o produto operacional porque, no MVP, apenas previsões negativas geram encaminhamento automático para revisão. Portanto, uma previsão neutra não deve ser interpretada como garantia de ausência de problema.
+
+A análise completa está documentada em `docs/ANALISE_ERROS_CLASSE_NEUTRA.md`.
+
+## 11. Produto gerado — Painel Operacional de CX
 
 A partir dos resultados foi implementado o **Painel de Voz do Cliente da ConectaShop**, integrado à API local de triagem.
 
@@ -173,7 +198,7 @@ O histórico da fila é temporário e existe apenas enquanto a página permanece
 
 A implementação e suas limitações estão detalhadas em `docs/PAINEL_OPERACIONAL_CX.md`.
 
-## 11. Modelo de negócio
+## 12. Modelo de negócio
 
 A proposta de valor do produto é reduzir o esforço necessário para transformar grandes volumes de avaliações em informação organizada.
 
@@ -187,7 +212,7 @@ Os usuários principais seriam equipes de:
 
 No conjunto analisado, atraso ou não recebimento teve a maior presença entre os cinco temas definidos, indicando uma frente relevante para investigação operacional.
 
-## 12. Rastreabilidade e reprodutibilidade
+## 13. Rastreabilidade e reprodutibilidade
 
 Todos os resultados numéricos utilizados neste relatório estão associados a código e evidências versionadas.
 
@@ -197,7 +222,7 @@ A reprodução é documentada em `docs/REPRODUCAO.md`.
 
 A execução registrada em `reports/etapa3/execucao.json` informa versões de Python e bibliotecas, semente aleatória, tamanho dos conjuntos e hashes SHA-256 de `treino.csv` e `teste.csv`.
 
-## 13. Limitações observadas
+## 14. Limitações observadas
 
 Os resultados devem ser interpretados considerando:
 
@@ -213,7 +238,7 @@ Os resultados devem ser interpretados considerando:
 
 Essas limitações fazem parte da interpretação dos resultados efetivamente obtidos.
 
-## 14. Conclusão
+## 15. Conclusão
 
 O projeto aplicou um fluxo completo de preparação textual, classificação de sentimentos, avaliação, otimização e exploração temática.
 
@@ -221,13 +246,13 @@ O modelo alcançou **80,40% de acurácia** e **80,69% de F1 para a classe negati
 
 Além da análise técnica, os resultados foram consolidados em um Painel Operacional de CX integrado a uma API local de triagem, demonstrando uma aplicação prática do modelo para classificar novas avaliações e apoiar a priorização de atendimento.
 
-## 15. Repositório
+## 16. Repositório
 
 GitHub: `lucasmendes94/Drop-Table-Projeto-Aplicado-II`
 
 O repositório contém código, documentação, evidências de execução, resultados e o protótipo produzido.
 
-## 16. Referências
+## 17. Referências
 
 - OLIST. Brazilian E-Commerce Public Dataset by Olist. Kaggle.
 - SCIKIT-LEARN. Documentação oficial do TF-IDF, Regressão Logística, métricas, validação cruzada e NMF.
