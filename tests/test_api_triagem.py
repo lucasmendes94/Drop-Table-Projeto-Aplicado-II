@@ -81,6 +81,17 @@ def test_triagem_positiva_sem_alerta(url_base: str) -> None:
     assert dados["encaminhar_para_revisao"] is False
 
 
+def test_caso_ambiguo_previsto_neutro_sem_alerta(url_base: str) -> None:
+    corpo = json.dumps(
+        {"texto": "Produto demorou muito para chegar"}
+    ).encode("utf-8")
+    status, dados = _post_triagem(url_base, corpo)
+
+    assert status == 200
+    assert dados["sentimento"] == "neutro"
+    assert dados["encaminhar_para_revisao"] is False
+
+
 def test_triagem_avaliacoes_sucessivas(url_base: str) -> None:
     casos = [
         ("Nao recebi meu pedido e ninguem responde no atendimento.", "negativo", True),
