@@ -38,7 +38,7 @@ Foi utilizado o conjunto público da Olist disponibilizado no Kaggle.
 
 O arquivo principal do projeto é `olist_order_reviews_dataset.csv`, que contém identificadores da avaliação e do pedido, nota, título, comentário e datas relacionadas à avaliação.
 
-Os dados brutos não são versionados no GitHub. A obtenção da base e a sequência de execução estão descritas em `docs/REPRODUCAO.md`.
+O arquivo bruto utilizado pelo projeto está versionado em `data/raw/olist_order_reviews_dataset.csv`, junto com as bases tratadas e o modelo necessários para reprodução e demonstração. A sequência completa de execução está descrita em `docs/REPRODUCAO.md`.
 
 ## 4. Preparação e tratamento
 
@@ -148,18 +148,30 @@ Foram identificadas 4.661 avaliações com pelo menos uma correspondência e 649
 
 Esses resultados são exploratórios. As regras detectam menções textuais e não comprovam, isoladamente, a ocorrência operacional do problema. As evidências estão em `reports/etapa3/cinco_temas.json` e `cinco_temas.csv`.
 
-## 10. Produto gerado
+## 10. Produto gerado — Painel Operacional de CX
 
-A partir dos resultados foi criado o **Painel de Voz do Cliente da ConectaShop**, disponível em `produto/painel_voz_cliente.html`.
+A partir dos resultados foi implementado o **Painel de Voz do Cliente da ConectaShop**, integrado à API local de triagem.
 
-O protótipo reúne:
+A interface está em `produto/painel_voz_cliente.html` e o serviço em `src/api_triagem.py`.
 
-- acurácia e métricas da classe negativa;
-- principal limitação da classe neutra;
-- cinco temas exploratórios de insatisfação;
-- uma leitura preliminar para apoio à priorização.
+Na inicialização, a API carrega uma única vez o pipeline treinado salvo em `data/processed/modelo/modelo_sentimento.joblib`. O painel envia novas avaliações para `POST /triagem`; o serviço normaliza o texto com a mesma função utilizada na preparação da base, executa o modelo e devolve:
 
-O produto demonstra como as saídas analíticas podem ser transformadas em uma visualização de apoio para áreas de Customer Experience, atendimento, qualidade e operações.
+- o sentimento previsto: negativo, neutro ou positivo;
+- o indicador `encaminhar_para_revisao`, verdadeiro apenas para previsões negativas.
+
+O painel apresenta:
+
+- triagem manual de novas avaliações;
+- contadores de avaliações triadas, encaminhadas e pendentes;
+- fila de atendimento da sessão;
+- filtro para itens encaminhados;
+- ação de marcar um item como tratado ou reabri-lo;
+- métricas históricas do classificador;
+- os cinco temas exploratórios de insatisfação.
+
+O histórico da fila é temporário e existe apenas enquanto a página permanece aberta. O MVP não persiste avaliações em banco de dados.
+
+A implementação e suas limitações estão detalhadas em `docs/PAINEL_OPERACIONAL_CX.md`.
 
 ## 11. Modelo de negócio
 
@@ -191,10 +203,13 @@ Os resultados devem ser interpretados considerando:
 
 - o sentimento foi derivado da nota, e não de anotação humana independente do texto;
 - a classe neutra apresentou F1 significativamente inferior;
+- 303 avaliações negativas reais do teste foram previstas como neutras, o que pode impedir alerta automático no MVP;
 - a categorização temática usa regras lexicais exploratórias;
 - 3.535 avaliações negativas não tiveram correspondência com os cinco temas definidos;
+- pequenas variações de escrita podem alterar a classificação; em teste do grupo, a troca de "para" por "pra" mudou o resultado de uma frase;
 - 19 identificadores de pedido aparecem tanto no treino quanto no teste histórico, embora não haja textos idênticos entre os conjuntos;
-- o conjunto Olist representa um recorte histórico e público de e-commerce.
+- o conjunto Olist representa um recorte histórico e público de e-commerce;
+- o painel mantém a fila somente durante a sessão e não persiste dados em banco.
 
 Essas limitações fazem parte da interpretação dos resultados efetivamente obtidos.
 
@@ -204,7 +219,7 @@ O projeto aplicou um fluxo completo de preparação textual, classificação de 
 
 O modelo alcançou **80,40% de acurácia** e **80,69% de F1 para a classe negativa**. A exploração das avaliações negativas destacou atraso ou não recebimento como o tema mais frequente entre as cinco categorias definidas.
 
-Além da análise técnica, os resultados foram consolidados em um protótipo de Painel de Voz do Cliente, demonstrando uma aplicação prática para apoio à tomada de decisão.
+Além da análise técnica, os resultados foram consolidados em um Painel Operacional de CX integrado a uma API local de triagem, demonstrando uma aplicação prática do modelo para classificar novas avaliações e apoiar a priorização de atendimento.
 
 ## 15. Repositório
 
