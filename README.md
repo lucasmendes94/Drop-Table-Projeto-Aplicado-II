@@ -12,7 +12,7 @@ O conjunto de dados utilizado é o **[Brazilian E-Commerce Public Dataset by Oli
 
 ### Entrega e documentação
 
-- [Relatório final do Projeto Aplicado II (DOCX)](PA2%20-%20Relat%C3%B3rio%20de%20Projeto%20Aplicado%20Drop%20table.docx)
+- [Relatório final (PDF)](PA2%20-%20Relat%C3%B3rio%20de%20Projeto%20Aplicado%20Drop%20table.pdf)
 - [Vídeo de apresentação (YouTube)](https://youtu.be/OEbNCCufuKQ)
 - [Relatório técnico final](docs/RELATORIO_TECNICO_FINAL.md)
 - [Apresentação do storytelling](docs/APRESENTACAO_STORYTELLING.md)
@@ -41,7 +41,7 @@ O conjunto de dados utilizado é o **[Brazilian E-Commerce Public Dataset by Oli
 
 ### Histórico
 
-- [Relatório revisado da Etapa 1](%5BPA2%5D%20Etapa%201%20-%20Drop%20Table%20-%20V280826.pdf)
+- [Relatório revisado da Etapa 1](docs/historico/%5BPA2%5D%20Etapa%201%20-%20Drop%20Table%20-%20V280826.pdf)
 - [Validação dos comentários do professor](VALIDACAO_COMENTARIOS.md)
 - [Cronograma mais recente](Cronograma%20-%20V191026.xlsx)
 
